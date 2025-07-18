@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lahari Tipparti | Full-Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --accent: #4776E6;
+            --light: #f9f9f9;
+            --dark: #333;
+            --gray: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, var(--secondary) 0%, transparent 100%);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeInLeft 1s ease;
+        }
+        
+        .about-text {
+            flex: 1;
+            animation: fadeInRight 1s ease;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-card ul {
+            list-style: none;
+        }
+        
+        .skill-card ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .skill-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .experience-item, .project-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover, .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .experience-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-title, .project-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .experience-date, .project-date {
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .experience-description, .project-description {
+            margin-bottom: 1rem;
+        }
+        
+        .experience-tech, .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .education-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-school {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .education-degree {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-details {
+            color: var(--gray);
+        }
+        
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .certification-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>Lahari Tipparti</h1>
+            <p class="tagline">Full-Stack Developer | Java Specialist | Spring Boot Enthusiast</p>
+            <div class="social-links">
+                <a href="mailto:laharitipparti@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+919959343521" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                <a href="https://www.linkedin.com/in/lahari-tipparthi-708186278" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/LahariTipparti" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <img src="assests/LAHARI PHOTO.jpg" alt="Lahari Tipparti" class="profile-img">
+                <div class="about-text">
+                    <p>Hello! I'm Lahari, a passionate full-stack developer with expertise in Java, Spring Boot, and modern web technologies. I specialize in building scalable microservices and intuitive user interfaces.</p>
+                    <p>With a strong foundation in both front-end and back-end development, I create seamless digital experiences that solve real-world problems. My engineering background gives me a unique perspective on problem-solving and system design.</p>
+                    <p>When I'm not coding, you can find me reading books, exploring new technologies, or contributing to open-source projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <ul>
+                        <li>Core Java</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-paint-brush"></i> Front-End</h3>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>React</li>
+                        <li>Thymeleaf</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-server"></i> Back-End</h3>
+                    <ul>
+                        <li>JSP</li>
+                        <li>Servlet</li>
+                        <li>Spring Boot</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>PLSQL</li>
+                        <li>JPA</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+                    <ul>
+                        <li>Spring Framework</li>
+                        <li>Microservices</li>
+                        <li>Git</li>
+                        <li>Maven</li>
+                        <li>Eclipse IDE</li>
+                        <li>VS Code</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Java Programming Intern</h3>
+                   
+                </div>
+                <div class="experience-description">
+                    <p>Gained hands-on experience with Java programming concepts and best practices during this intensive internship program.</p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 class="experience-title">Restaurant Service Project</h3>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Built a Spring Boot microservices application for Restaurant and Order management with clear service separation.</li>
+                        <li>Implemented REST APIs and enabled inter-service communication using RestTemplate and OpenFeign; used MySQL for data persistence.</li>
+                        <li>Achieved modularity and scalability by developing independently deployable services with clean API integration.</li>
+                    </ul>
+                </div>
+                <div class="experience-tech">
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Microservices</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">OpenFeign</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Personal Projects</h2>
+            </div>
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">IQPOP - Interactive Quiz Platform</h3>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Identified the need for real-time knowledge assessment and performance tracking through an interactive quiz platform.</li>
+                        <li>Developed a full-stack quiz application using React, Spring Boot, MySQL, and REST APIs with Axios for frontend-backend communication.</li>
+                        <li>Delivered a responsive UI that provided instant feedback and improved user engagement through performance monitoring.</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">Axios</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">BookBase - Personal Book Collection Manager</h3>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Identified the need for a simple digital solution to manage personal book collections with user-friendly CRUD operations.</li>
+                        <li>Developed a full-stack application using Spring Boot, Thymeleaf, JPA, and MySQL, following the MVC architecture.</li>
+                        <li>Delivered an interactive UI and streamlined database handling, making it easy for users to manage and personalize book records.</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Thymeleaf</span>
+                    <span class="tech-tag">JPA</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">MVC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="education-item">
+                <div class="education-header">
+                    <span class="education-school">St. Martin's Engineering College, Hyderabad</span>
+                    <span class="education-date">2018-2020</span>
+                </div>
+                <p class="education-degree">B.Tech, Civil Engineering</p>
+                <p class="education-details">CGPA: 8.0</p>
+            </div>
+            <div class="education-item">
+                <div class="education-header">
+                    <span class="education-school">Sri Chaitanya Junior Kalasala, Hyderabad</span>
+                    <span class="education-date">2017-2018</span>
+                </div>
+                <p class="education-degree">Intermediate</p>
+                <p class="education-details">Percentage: 95.6</p>
+            </div>
+            <div class="education-item">
+                <div class="education-header">
+                    <span class="education-school">Vasavi High School, Bhainsa</span>
+                    <span class="education-date">2016-2017</span>
+                </div>
+                <p class="education-degree">Board of Secondary Education</p>
+                <p class="education-details">CGPA: 9.2</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+            </div>
+            <div class="certifications">
+                <div class="certification-item">
+                    <h3>Software Engineer Intern</h3>
+                    <p>HackerRank</p>
+                    <p>Certified for core coding and problem-solving skills</p>
+                </div>
+                <div class="certification-item">
+                    <h3>Front End Development using HTML</h3>
+                    <p>Great Learning</p>
+                </div>
+                <div class="certification-item">
+                    <h3>Machine Learning Certification</h3>
+                    <p>Internship Studio</p>
+                </div>
+                <div class="certification-item">
+                    <h3>A Review on Blogging</h3>
+                    <p>ICCIASH</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>I'm currently looking for new opportunities and would love to hear from you!</p>
+            <div class="contact-info">
+                <a href="mailto:laharitipparti@gmail.com"><i class="fas fa-envelope"></i> laharitipparti@gmail.com</a>
+                <a href="tel:+919959343521"><i class="fas fa-phone"></i> +91 9959343521</a>
+            </div>
+            <div class="social-links" style="margin-top: 2rem;">
+                <a href="https://www.linkedin.com/in/lahari-tipparthi-708186278" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/LahariTipparti" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem;">&copy; 2023 Lahari Tipparti. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
